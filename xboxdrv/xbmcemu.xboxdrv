@@ -1,0 +1,121 @@
+# XBMC/Emulator Configuration
+#
+# This configuration file is based on the original xbmc.xboxdrv example
+# It adds a total of five combo buttons (see Special Mapping below) to 
+# make emulator control easier.
+# This is especially useful when emulating newer systems that use 
+# 14+ buttons (ex: N64, PS1)
+#
+# ==============================================
+#                   Properties
+# ==============================================
+# Name: 
+# XBOX 360 Controler - XBMC/Emulators
+#
+# xboxdrv Keymap:
+# ~/.xbmc/userdata/keymaps/xbmcemu.xboxdrv
+#
+# Axes    : 6
+# Buttons : 20
+#
+# ==============================================
+#                 Button Mapping
+# ==============================================
+# A                           =           2
+# B                           =           3
+# X                           =           4
+# Y                           =           5
+# Left Shoulder Button(LB)    =           6
+# Rigt Shoulder Button(RB)    =           7
+# Start                       =           8
+# Guide                       =           9
+# Left Stick Button  (TL)     =           10
+# Right Stick Button (TR)     =           11
+# D-Pad UP                    =           0
+# D-Pad Down                  =           1
+# D-Pad Left                  =           17
+# D-Pad Right                 =           18
+# Back                        =           19
+# ==============================================
+#                 Special Mapping
+# ==============================================
+# Hold for 2 Seconds:
+# Guide                       =           ESC
+# Start                       =           12
+# Back                        =           13
+# LB + RB                     =           14
+# Left Stick Button  (TL)     =           15
+# Right Stick Button (TR)     =           16
+#
+# ==============================================
+#                  Axis Mapping
+# ==============================================
+# Left Stick Left             =           0-
+# Left Stick Right            =           0+
+# Left Stick Up               =           1-
+# Left Stick Down             =           1+
+#
+# Right Stick Left            =           3-
+# Right Stick Right           =           3+
+# Right Stick Up              =           4-
+# Right Stick Down            =           4+
+#
+# Left Triger   (LT)          =           2+
+# Right Trigger (RT)          =           5+
+# ==============================================
+
+# XBOXDRV OPtions
+[xboxdrv]
+ui-clear      = true
+extra-devices = false
+extra-events  = false
+deadzone      = 6000
+
+# Device name has been modified to enable a custom xbmc 
+# keymap file
+device-name   = "XBOX 360 Controler - XBMC/Emulators"
+
+# Button Mapping
+[ui-buttonmap]
+A                 = BTN_A
+B                 = BTN_B
+X                 = BTN_X
+Y                 = BTN_Y
+
+# Modification for frodo
+DU                = BTN_TOP
+DD                = BTN_TOP2
+DL                = BTN_LEFT
+DR                = BTN_RIGHT
+
+# The buttons below are mapped to two different buttons.
+# <BUTTON>=<SET1>:<SET2>:DELAY
+# The delay controls how long the button has to be held
+# before <SET2> is applied.
+START             = BTN_START:BTN_TRIGGER_HAPPY36:2000
+GUIDE             = BTN_MODE:KEY_ESC:2000
+BACK              = BTN_BACK:BTN_TRIGGER_HAPPY37:2000
+
+LB                = BTN_TL
+RB                = BTN_TR
+# LB+RB are mapped to BTH38 with a delay of 2seconds
+LB+RB^delay:2000  = BTN_TRIGGER_HAPPY38
+
+TL                = BTN_THUMBL:BTN_TRIGGER_HAPPY39:2000
+TR                = BTN_THUMBR:BTN_TRIGGER_HAPPY40:2000
+
+[ui-axismap]
+X1                = ABS_X
+Y1                = ABS_Y
+
+X2                = ABS_RX
+Y2                = ABS_RY
+
+# The resp filter moves the neutral position to zero to work around a
+# bug in XBMC, that causes bogus events when neutral position is
+# elsewhere. It loses a bit of precision in the trigger as result, but
+# that isn't noticable.
+LT^resp:127:255=ABS_Z
+RT^resp:127:255=ABS_RZ
+
+# EOF #

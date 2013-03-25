@@ -1,0 +1,288 @@
+#! /bin/bash
+### BEGIN INIT INFO
+# Provides:          xboxdrv-rc
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: xboxdrv service script
+#
+# Description:
+# A service script for the xboxdrv controller
+# driver.
+#
+# Prereqs:
+# - User running it has to have cached sudo permissions
+#   or passwordless sudo configured
+#
+# Changelog:
+# v1.1 - Draggy - 04/12/2011
+# - Initial Version
+#
+# v1.4 - Firas AlShafei - 03/17/2013
+# - Condensed changelog
+# - Removed PID files
+# - Modified script to not use screen
+# - Renamed script to xboxdrv-rc
+# - Added option flags add ability for
+#   - keymap file assignment
+#   - inline xboxdrv options
+# - Added a startup delay when using restart|reload
+# - Cleaned up code and added usage function
+# - Added function to modify uinput permissions so it can
+#   be accessed by non-root users.
+#
+### END INIT INFO
+
+##############################################################
+# User Modifiable Variables
+##############################################################
+
+# User that xboxdrv-rc would run as
+USER="xbmc"
+
+# Driver binary
+XDRV=xboxdrv
+
+# Wireless Controllers
+# ex value: (0 1 2 3)
+WIRELESS=(0 1)
+
+# Wired Controllers
+# ex value: (0 1 2 3)
+WIRED=()
+
+# Default xboxdrv configuration files to use
+KEYMAP_FILE="/home/xbmc/.xbmc/userdata/keymaps/MyXBMC.xboxdrv"
+
+# xboxdrv run parameters
+INIT_XDRV_OPTIONS="--silent --quiet"
+
+
+##############################################################
+# Script Functions
+##############################################################
+
+# Set command to be issued
+function set_command()
+{
+   XDRV_CMD="$INIT_XDRV_OPTIONS -c $KEYMAP_FILE $XDRV_OPTIONS"
+}
+
+function check_sudo()
+{
+   $(sudo -n uptime >& /dev/null)
+   if [ $? -ne 0 ]; then
+      echo "Error: User must have cached sudo permissions or passwordless sudo configured"
+      echo "       Please fix user permissions and re-run script" && echo
+      usage
+      exit
+   fi
+}
+
+function start()
+{
+   # Modify uinput permissions to allow non-root access
+   if [ $(stat -c %a /dev/uinput) -ne 660 ]; then
+      sudo su - $USER -c "chmod 660 /dev/uinput"
+   fi
+
+   # Load uinput if it isnt loaded already
+   if [ -z "$(lsmod | grep uinput)" ]; then
+      echo "Loading uinput module"
+      sudo su - $USER -c "$(which modprobe) uinput"
+   fi
+
+   # Load joydev if it isnt loaded already
+   if [ -z "$(lsmod | grep joydev)" ]; then
+      echo "Loading joydev module"
+      sudo su - $USER -c "modprobe joydev"
+   fi
+
+   # Unload xpad if its loaded
+   if [ -n "$(lsmod | grep xpad)" ]; then
+      echo "Unloading xpad module"
+      sudo su - $USER -c "rmmod xpad"
+   fi
+
+   for i in ${WIRELESS[@]}; do
+      if [ $(pgrep -f -c "xboxdrv --wid $i") -gt 1 ];then
+         echo "Multiple instances of xboxdrv found for Wireless Controller #$i"
+         echo "Attempting to clean up by killing them"
+         pkill -f "xboxdrv --wid $i"
+      elif [ $(pgrep -f -c "xboxdrv --wid $i") -eq 1 ];then
+         echo "Wireless Controller #$i is already running"
+      else
+         echo "Starting Wireless Controller #$i"
+         sudo su - $USER -c "$XDRV --wid $i $XDRV_CMD &"
+      fi
+   done
+
+   for i in ${WIRED[@]}; do
+      if [ $(pgrep -f -c "xboxdrv --id $i") -gt 1 ];then
+         echo "Multiple instances of xboxdrv found for Wired Controller #$i"
+         echo "Attempting to clean up by killing them"
+         pkill -f "xboxdrv --id $i"
+      elif [ $(pgrep -f -c "xboxdrv --id $i") -eq 1 ];then
+         echo "Wired Controller #$i is already running"
+      else
+         echo "Starting Wired Controller #$i"
+         sudo su - $USER -c "$XDRV --id $i $XDRV_CMD &"
+      fi
+   done
+}
+
+# stop
+function stop()
+{
+   for i in ${WIRELESS[@]}; do
+      if [ $(pgrep -f -c "xboxdrv --wid $i") -eq "1" ];then
+         echo "Stopping Wireless Controller #$i"
+         sudo kill -9 $(pgrep -f "xboxdrv --wid $i")
+      else
+         echo "Wireless Controller #$i is not running"
+      fi
+   done
+
+   for i in ${WIRED[@]}; do
+      if [ $(pgrep -f -c "xboxdrv --id $i") -eq 1 ];then
+         echo "Stopping Wired Controller #$i"
+         sudo kill -9 $(pgrep -f "xboxdrv --id $i")
+      else
+         echo "Wired Controller #$i is not running"
+      fi
+   done
+}
+
+function status()
+{
+   for i in ${WIRELESS[@]}; do
+      if [ $(pgrep -f -c "xboxdrv --wid $i") -eq "1" ];then
+         echo "Wireless Controller #$i is running"
+      else
+         echo "Wireless Controller #$i is not running"
+      fi
+   done
+
+   for i in ${WIRED[@]}; do
+      if [ $(pgrep -f -c "xboxdrv --id $i") -eq 1 ];then
+         echo "Wired Controller #$i is running"
+      else
+         echo "Wired Controller #$i is not running"
+      fi
+   done
+}
+
+function usage()
+{
+    echo "USAGE: "
+    echo "    xboxdrvrc [start|stop|restart|status] [OPTIONS]"
+    echo
+    echo "OPTIONS:"
+    echo "    -k [FILE], --keymap-file [FILE]"
+    echo "          Provide an alternate xboxdrv key file to use"
+    echo "          Full path to the file must be provided"
+    echo
+    echo "    -x [XD-OPTS], --xboxdrv-opts [XD-OPTS]"
+    echo "          Provide inline xboxdrv options. Options provided have to be enclosed in quotes"
+    echo "          Please refer to the xboxdrv man page for options"
+    echo
+    echo "    -h, --help"
+    echo "          Print this usage information"
+    echo
+    echo "EXAMPLES:"
+    echo "    xboxdrvrc start"
+    echo "    xboxdrvrc restart --xboxdrv-opts \"--ui-buttonmap guide=key::KEY_ESC:2000\""
+    echo "    xboxdrvrc start   --keymap-file /home/xbmc/zsnes.xboxdrv --xboxdrv-opts \"--ui-buttonmap guide=key::KEY_ESC:2000\""
+    echo
+}
+
+##############################################################
+# Main Logic
+##############################################################
+
+# Get user input
+PARAMS=`getopt -o "k:x:h" -l "keymap-file:,xboxdrv-opts:,help"  -- "$@"`
+
+# If no input is provided echo usage statement
+if [ $? -ne 0 ]; then
+   usage
+   exit 1
+fi
+
+# A little magic
+eval set -- "$PARAMS"
+
+# Go through all the options
+while true;
+do
+  case "$1" in
+    # The keymap-file parameter
+    # Check if the file exists - print an error message and exit if it doesnt
+    -k|--keymap-file)
+      if [ -n "$2" ]; then
+        KEYMAP_FILE="$2"
+        if [ ! -f $KEYMAP_FILE ];then
+           echo Error: Invalid keymap file $KEYMAP_FILE specified.
+           echo "       Ensure the file exists and provide the absolute path." && echo
+           usage
+           exit 1
+        fi
+      fi
+      shift 2
+    ;;
+
+    # The xboxdrv options parameter
+    # Cant check this - if the input is bad we'll have to wait for the error from xboxdrv
+    -x|--xboxdrv-opts)
+      if [ -n "$2" ]; then
+        XDRV_OPTIONS="$2"
+      fi
+      shift 2
+    ;;
+
+    # Help parameter
+    # Calls the usage function and exits
+    -h|--help)
+       usage
+       exit 0
+    ;;
+
+    --)
+       shift
+       break
+    ;;
+  esac
+done
+
+# Check if user has sudo
+check_sudo
+
+# Set xboxdrv parameters
+set_command
+
+# Call action function based on user input
+case "$1" in
+   start)
+      start
+   ;;
+   stop)
+      stop
+   ;;
+   status)
+      status
+   ;;
+   restart|reload)
+      stop
+      sleep 1
+      start
+   ;;
+   *)
+      echo "Error: Invalid arguments or no arguments provided" && echo
+      usage
+
+      exit 1
+   ;;
+esac
+
+exit 0

@@ -1,0 +1,107 @@
+#
+# Default xboxdrv Configuration
+# 
+# ==============================================
+#                   Properties
+# ==============================================
+# Name: 
+# Controller (XBOX 360 For Windows)
+#
+# xboxdrv Keymap:
+# /usr/share/doc/xboxdrv/examples/xbmc.xboxdrv
+#
+# Axes    : 6
+# Buttons : 15
+#
+# ==============================================
+#                 Button Mapping
+# ==============================================
+# A                            =           0
+# B                            =           1
+# X                            =           2
+# Y                            =           3
+# Left Shoulder Button(LB)     =           4
+# Rigt Shoulder Button(RB)     =           5
+# Start                        =           6
+# Guide                        =           7
+# Left Stick Button  (TL)      =           8
+# Right Stick Button (TR)      =           9
+# D-Pad UP                     =           10
+# D-Pad Down                   =           11
+# D-Pad Left                   =           12
+# D-Pad Right                  =           13
+# Back                         =           14
+# ==============================================
+#                  Axis Mapping
+# ==============================================
+# Left Stick Left              =           0-
+# Left Stick Right             =           0+
+# Left Stick Up                =           1-
+# Left Stick Down              =           1+
+#
+# Right Stick Left             =           3-
+# Right Stick Right            =           3+
+# Right Stick Up               =           4-
+# Right Stick Down             =           4+
+#
+# Left Triger   (LT)           =           2+
+# Right Trigger (RT)           =           5+
+# ==============================================
+
+# XBMC Configuration
+# ==================
+#
+# This configuration file that with XBMC by emulating a wireless
+# Xbox360 controller connected to the xpad kernel driver. It uses the
+# configuration files that come with XBMC, so it should work out of
+# the box without any further configuration of XBMC.
+#
+# This file is identical to 'xpad-wireless.xboxdrv', except the
+# workaround for the trigger issue in XBMC.
+#
+# Modified to work with Frodo - 03/17/2013
+
+[xboxdrv]
+ui-clear = true
+extra-devices=false
+extra-events=false
+deadzone=6000
+device-name = "Controller (XBOX 360 For Windows)"
+
+[ui-buttonmap]
+A=BTN_A
+B=BTN_B
+X=BTN_X
+Y=BTN_Y
+
+# Modification for frodo
+DU=BTN_0
+DD=BTN_1
+DL=BTN_LEFT
+DR=BTN_RIGHT
+
+START=BTN_START
+GUIDE=BTN_MODE
+BACK=BTN_BACK
+
+LB=BTN_TL
+RB=BTN_TR
+
+TL=BTN_THUMBL
+TR=BTN_THUMBR
+
+[ui-axismap]
+X1=ABS_X
+Y1=ABS_Y
+
+X2=ABS_RX
+Y2=ABS_RY
+
+# The resp filter moves the neutral position to zero to work around a
+# bug in XBMC, that causes bogus events when neutral position is
+# elsewhere. It loses a bit of precision in the trigger as result, but
+# that isn't noticable.
+LT^resp:127:255=ABS_Z
+RT^resp:127:255=ABS_RZ
+
+# EOF #
