@@ -1,0 +1,303 @@
+<!-- This is a template keymap file for the XBOX360 Controller  -->
+<!-- You can modify the keymap file manually to include your    -->
+<!-- unique button mapping                                      -->
+<!-- Use the replace-all function in any word processor         -->
+<!-- Buttons: [[A]]         --> Button Number ex: 1-100         -->
+<!-- Axis   : [[LTHUMB-L]]  --> id="0" limit="-1"               -->
+
+<!-- This file contains the mappings for a Microsoft Xbox 360 Controller to actions within XBMC    -->
+<!-- The <global> section is a fall through - they will only be used if the button is not          -->
+<!-- used in the current window's section.  Note that there is only handling                       -->
+<!-- for a single action per button at this stage.                                                 -->
+
+<!-- The format of a mapping is:                                -->
+<!--    <device name="name">                                    -->
+<!--      <button id="x">action</button>                        -->
+<!--      <axis id="x" limit="y">action</axis>                  -->
+<!--      <hat id="1" position="left">action</hat>              -->
+<!--    </device>                                               -->
+
+<!-- Note that the action can be a built-in function.           -->
+<!-- eg <button id="x">XBMC.ActivateWindow(Home)</button>       -->
+<!-- would automatically go to Home on the press of button 'x'. -->
+
+<keymap>
+  <global>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="2">Select</button>
+      <button id="3">Back</button>
+      <button id="4">ContextMenu</button>
+      <button id="5">FullScreen</button>
+      <button id="6">Queue</button>
+      <button id="7">Playlist</button>
+      <button id="19">PreviousMenu</button>
+      <button id="8">XBMC.ActivateWindow(Home)</button>
+      <button id="9">XBMC.ActivateWindow(Programs)</button>
+      <button id="10">XBMC.ActivateWindow(ShutdownMenu)</button>
+      <button id="11">XBMC.ActivateWindow(PlayerControls)</button>
+      <button id="17">Left</button>
+      <button id="18">Right</button>
+      <button id="0">Up</button>
+      <button id="1">Down</button>
+      <axis id="0" limit="-1">AnalogSeekBack</axis>
+      <axis id="0" limit="+1">AnalogSeekForward</axis>
+      <axis id="1" limit="-1">AnalogSeekForward</axis>
+      <axis id="1" limit="+1">AnalogSeekBack</axis>
+      <axis id="3" limit="-1">VolumeDown</axis>
+      <axis id="3" limit="+1">VolumeUp</axis>
+      <axis id="4" limit="-1">VolumeUp</axis>
+      <axis id="4" limit="+1">VolumeDown</axis>
+      <axis id="2" limit="+1">ScrollUp</axis>
+      <axis id="5" limit="+1">ScrollDown</axis>
+    </joystick>
+  </global>
+  <Home>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="8">XBMC.Skin.ToggleSetting(HomeViewToggle)</button>
+    </joystick>
+  </Home>
+  <MyFiles>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="7">Highlight</button>
+    </joystick>
+  </MyFiles>
+  <MyMusicPlaylist>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="6">Delete</button>
+    </joystick>
+  </MyMusicPlaylist>
+  <MyMusicFiles>
+  </MyMusicFiles>
+  <MyMusicLibrary>
+  </MyMusicLibrary>
+  <FullscreenVideo>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="2">Pause</button>
+      <button id="3">Stop</button>
+      <button id="4">OSD</button>
+      <button id="6">AspectRatio</button>
+      <button id="7">ShowSubtitles</button>
+      <button id="19">SmallStepBack</button>
+      <button id="8">Info</button>
+      <button id="9">XBMC.ActivateWindow(Home)</button> 
+      <button id="10">XBMC.ActivateWindow(ShutdownMenu)</button>
+      <button id="11">AudioNextLanguage</button> 
+      <button id="17">StepBack</button>
+      <button id="18">StepForward</button>
+      <button id="0">BigStepForward</button>
+      <button id="1">BigStepBack</button>
+      <axis id="2" limit="+1">AnalogRewind</axis>
+      <axis id="5" limit="+1">AnalogFastForward</axis>
+    </joystick>
+  </FullscreenVideo>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="17">PreviousChannelGroup</button>
+      <button id="18">NextChannelGroup</button>
+      <button id="0">ChannelUp</button>
+      <button id="1">ChannelDown</button>
+    </joystick>
+  </FullscreenLiveTV>
+  <FullscreenInfo>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="3">Close</button>
+      <button id="4">OSD</button>
+      <button id="8">Close</button>
+      <axis id="5" limit="+1">AnalogRewind</axis>
+      <axis id="2" limit="+1">AnalogFastForward</axis>
+    </joystick>
+  </FullscreenInfo>
+  <PlayerControls>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="4">Close</button>
+      <button id="10">Close</button>
+      <button id="11">Close</button>
+    </joystick>
+  </PlayerControls>
+  <Visualisation>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="2">Pause</button>
+      <button id="3">Stop</button>
+      <button id="4">XBMC.ActivateWindow(MusicOSD)</button>
+      <button id="6">XBMC.ActivateWindow(VisualisationPresetList)</button>
+      <button id="7">Info</button>
+      <button id="11">XBMC.ActivateWindow(MusicOSD)</button>
+      <button id="17">PreviousPreset</button>
+      <button id="18">NextPreset</button>
+      <button id="0">SkipPrevious</button>
+      <button id="1">SkipNext</button>
+      <axis id="2" limit="+1">AnalogRewind</axis>
+      <axis id="5" limit="+1">AnalogFastForward</axis>
+    </joystick>
+  </Visualisation>
+  <MusicOSD>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="4">Close</button>
+      <button id="7">Info</button>
+    </joystick>
+  </MusicOSD>
+  <VisualisationSettings>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="3">Close</button>
+    </joystick>
+  </VisualisationSettings>
+  <VisualisationPresetList>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="3">Close</button>
+    </joystick>
+  </VisualisationPresetList>
+  <SlideShow>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="2">Pause</button>
+      <button id="3">Stop</button>
+      <button id="5">ZoomNormal</button>
+      <button id="6">Rotate</button>
+      <button id="7">CodecInfo</button>
+      <button id="17">PreviousPicture</button>
+      <button id="18">NextPicture</button>
+      <button id="0">ZoomIn</button>
+      <button id="1">ZoomOut</button>
+      <axis id="1">AnalogMove</axis>
+      <axis id="2">AnalogMove</axis>
+      <axis id="5" limit="+1">ZoomOut</axis>
+      <axis id="2" limit="+1">ZoomIn</axis>
+    </joystick>
+  </SlideShow>
+  <ScreenCalibration>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="4">ResetCalibration</button>
+      <button id="6">NextResolution</button>
+      <button id="7">NextCalibration</button>
+    </joystick>
+  </ScreenCalibration>
+  <GUICalibration>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="4">ResetCalibration</button>
+      <button id="6">NextResolution</button>
+      <button id="7">NextCalibration</button>
+    </joystick>
+  </GUICalibration>
+  <VideoOSD>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="4">Close</button>
+    </joystick>
+  </VideoOSD>
+  <VideoMenu>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="3">Stop</button>
+      <button id="4">OSD</button>
+      <button id="6">AspectRatio</button>
+      <button id="8">Info</button>
+    </joystick>
+  </VideoMenu>
+  <OSDVideoSettings>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="6">AspectRatio</button>
+      <button id="4">Close</button>
+    </joystick>
+  </OSDVideoSettings>
+  <OSDAudioSettings>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="6">AspectRatio</button>
+      <button id="4">Close</button>
+    </joystick>
+  </OSDAudioSettings>
+  <VideoBookmarks>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="6">Delete</button>
+    </joystick>
+  </VideoBookmarks>
+  <MyVideoLibrary>
+  </MyVideoLibrary>
+  <MyVideoFiles>
+  </MyVideoFiles>
+  <MyVideoPlaylist>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="6">Delete</button>
+    </joystick>
+  </MyVideoPlaylist>
+  <VirtualKeyboard>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="3">BackSpace</button>
+      <button id="5">Symbols</button>
+      <button id="6">Shift</button>
+      <button id="10">Enter</button>
+      <axis id="5" limit="+1">CursorLeft</axis>
+      <axis id="2" limit="+1">CursorRight</axis>
+    </joystick>
+  </VirtualKeyboard>
+  <ContextMenu>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="3">Close</button>
+      <button id="4">Close</button>
+    </joystick>
+  </ContextMenu>
+  <Scripts>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="4">Info</button>
+    </joystick>
+  </Scripts>
+  <Settings>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="3">PreviousMenu</button>
+    </joystick>
+  </Settings>
+  <AddonInformation>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="3">Close</button>
+    </joystick>
+  </AddonInformation>
+  <AddonSettings>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="3">Close</button>
+    </joystick>
+  </AddonSettings>
+  <TextViewer>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="3">Close</button>
+    </joystick>
+  </TextViewer>
+  <shutdownmenu>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="3">PreviousMenu</button>
+      <button id="10">PreviousMenu</button>
+    </joystick>
+  </shutdownmenu>
+  <submenu>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="3">PreviousMenu</button>
+    </joystick>
+  </submenu>
+  <MusicInformation>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="3">Close</button>
+    </joystick>
+  </MusicInformation>
+  <MovieInformation>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="3">Close</button>
+    </joystick>
+  </MovieInformation>
+  <NumericInput>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="3">BackSpace</button>
+      <button id="10">Enter</button>
+    </joystick>
+  </NumericInput>
+  <GamepadInput>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="11">Stop</button>
+    </joystick>
+  </GamepadInput>
+  <LockSettings>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="3">PreviousMenu</button>
+      <button id="11">Close</button>
+    </joystick>
+  </LockSettings>
+  <ProfileSettings>
+    <joystick name="XBMCEmu XBOX360 Controller">
+      <button id="3">PreviousMenu</button>
+      <button id="11">Close</button>
+    </joystick>
+  </ProfileSettings>
+</keymap>

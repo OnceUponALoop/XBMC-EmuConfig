@@ -1,0 +1,304 @@
+<!-- This is a template keymap file for the XBOX360 Controller  -->
+<!-- You can modify the keymap file manually to include your    -->
+<!-- unique button mapping                                      -->
+<!-- Use the replace-all function in any word processor         -->
+<!-- Buttons: [[A]]         -> Button Number ex: 1-100          -->
+<!-- Axis   : [[LTHUMB-L]]  -> id="0" limit="-1"                -->
+
+<!-- This file contains the mappings for a Microsoft Xbox 360 Controller to actions within XBMC    -->
+<!-- The <global> section is a fall through - they will only be used if the button is not          -->
+<!-- used in the current window's section.  Note that there is only handling                       -->
+<!-- for a single action per button at this stage.                                                 -->
+
+<!-- The format of a mapping is:                                -->
+<!--    <device name="name">                                    -->
+<!--      <button id="x">action</button>                        -->
+<!--      <axis id="x" limit="y">action</axis>                  -->
+<!--      <hat id="1" position="left">action</hat>              -->
+<!--    </device>                                               -->
+
+<!-- Note that the action can be a built-in function.           -->
+<!-- eg <button id="x">XBMC.ActivateWindow(Home)</button>       -->
+<!-- would automatically go to Home on the press of button 'x'. -->
+
+<keymap>
+  <global>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[A]]">Select</button>
+      <button id="[[B]]">Back</button>
+      <button id="[[X]]">ContextMenu</button>
+      <button id="[[Y]]">FullScreen</button>
+      <button id="[[LB]]">Queue</button>
+      <button id="[[RB]]">Playlist</button>
+      <button id="[[BACK]]">PreviousMenu</button>
+      <button id="[[START]]">XBMC.ActivateWindow(Home)</button>
+      <button id="[[GUIDE]]">XBMC.ActivateWindow(Home)</button>
+      <button id="[[LTHUMB]]">XBMC.ActivateWindow(ShutdownMenu)</button>
+      <button id="[[RTHUMB]]">XBMC.ActivateWindow(PlayerControls)</button>
+      <button id="[[DPAD-L]]">Left</button>
+      <button id="[[DPAD-R]]">Right</button>
+      <button id="[[DPAD-UP]]">Up</button>
+      <button id="[[DPAD-DN]]">Down</button>
+      <axis [[LTHUMB-L]]>AnalogSeekBack</axis>
+      <axis [[LTHUMB-R]]>AnalogSeekForward</axis>
+      <axis [[LTHUMB-UP]]>AnalogSeekForward</axis>
+      <axis [[LTHUMB-DN]]>AnalogSeekBack</axis>
+      <axis [[RTHUMB-L]]>VolumeDown</axis>
+      <axis [[RTHUMB-R]]>VolumeUp</axis>
+      <axis [[RTHUMB-UP]]>VolumeUp</axis>
+      <axis [[RTHUMB-DN]]>VolumeDown</axis>
+      <axis [[LT]]>ScrollUp</axis>
+      <axis [[RT]]>ScrollDown</axis>
+    </joystick>
+  </global>
+  <Home>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[START]]">XBMC.Skin.ToggleSetting(HomeViewToggle)</button>
+    </joystick>
+  </Home>
+  <MyFiles>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[RB]]">Highlight</button>
+    </joystick>
+  </MyFiles>
+  <MyMusicPlaylist>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[LB]]">Delete</button>
+    </joystick>
+  </MyMusicPlaylist>
+  <MyMusicFiles>
+  </MyMusicFiles>
+  <MyMusicLibrary>
+  </MyMusicLibrary>
+  <FullscreenVideo>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[A]]">Pause</button>
+      <button id="[[B]]">Stop</button>
+      <button id="[[X]]">OSD</button>
+      <button id="[[LB]]">AspectRatio</button>
+      <button id="[[RB]]">ShowSubtitles</button>
+      <button id="[[BACK]]">SmallStepBack</button>
+      <button id="[[START]]">Info</button>
+      <button id="[[GUIDE]]">XBMC.ActivateWindow(Home)</button>  <!-- guide -->
+      <button id="[[LTHUMB]]">XBMC.ActivateWindow(ShutdownMenu)</button>  <!-- left stick -->
+      <button id="[[RTHUMB]]">AudioNextLanguage</button>  <!-- right stick -->
+      <button id="[[DPAD-L]]">StepBack</button>
+      <button id="[[DPAD-R]]">StepForward</button>
+      <button id="[[DPAD-UP]]">BigStepForward</button>
+      <button id="[[DPAD-DN]]">BigStepBack</button>
+      <axis [[LT]]>AnalogRewind</axis>
+      <axis [[RT]]>AnalogFastForward</axis>
+    </joystick>
+  </FullscreenVideo>
+  <FullscreenLiveTV>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[DPAD-L]]">PreviousChannelGroup</button>
+      <button id="[[DPAD-R]]">NextChannelGroup</button>
+      <button id="[[DPAD-UP]]">ChannelUp</button>
+      <button id="[[DPAD-DN]]">ChannelDown</button>
+    </joystick>
+  </FullscreenLiveTV>
+  <FullscreenInfo>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[B]]">Close</button>
+      <button id="[[X]]">OSD</button>
+      <button id="[[START]]">Close</button>
+      <axis [[RT]]>AnalogRewind</axis>
+      <axis [[LT]]>AnalogFastForward</axis>
+    </joystick>
+  </FullscreenInfo>
+  <PlayerControls>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[X]]">Close</button>
+      <button id="[[LTHUMB]]">Close</button>
+      <button id="[[RTHUMB]]">Close</button>
+    </joystick>
+  </PlayerControls>
+  <Visualisation>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[A]]">Pause</button>
+      <button id="[[B]]">Stop</button>
+      <button id="[[X]]">XBMC.ActivateWindow(MusicOSD)</button>
+      <button id="[[LB]]">XBMC.ActivateWindow(VisualisationPresetList)</button>
+      <button id="[[RB]]">Info</button>
+      <button id="[[RTHUMB]]">XBMC.ActivateWindow(MusicOSD)</button>
+      <button id="[[DPAD-L]]">PreviousPreset</button>
+      <button id="[[DPAD-R]]">NextPreset</button>
+      <button id="[[DPAD-UP]]">SkipPrevious</button>
+      <button id="[[DPAD-DN]]">SkipNext</button>
+      <axis [[LT]]>AnalogRewind</axis>
+      <axis [[RT]]>AnalogFastForward</axis>
+    </joystick>
+  </Visualisation>
+  <MusicOSD>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[X]]">Close</button>
+      <button id="[[RB]]">Info</button>
+    </joystick>
+  </MusicOSD>
+  <VisualisationSettings>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[B]]">Close</button>
+    </joystick>
+  </VisualisationSettings>
+  <VisualisationPresetList>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[B]]">Close</button>
+    </joystick>
+  </VisualisationPresetList>
+  <SlideShow>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[A]]">Pause</button>
+      <button id="[[B]]">Stop</button>
+      <button id="[[Y]]">ZoomNormal</button>
+      <button id="[[LB]]">Rotate</button>
+      <button id="[[RB]]">CodecInfo</button>
+      <button id="[[DPAD-L]]">PreviousPicture</button>
+      <button id="[[DPAD-R]]">NextPicture</button>
+      <button id="[[DPAD-UP]]">ZoomIn</button>
+      <button id="[[DPAD-DN]]">ZoomOut</button>
+      <axis id="1">AnalogMove</axis>
+      <axis id="2">AnalogMove</axis>
+      <axis [[RT]]>ZoomOut</axis>
+      <axis [[LT]]>ZoomIn</axis>
+    </joystick>
+  </SlideShow>
+  <ScreenCalibration>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[X]]">ResetCalibration</button>
+      <button id="[[LB]]">NextResolution</button>
+      <button id="[[RB]]">NextCalibration</button>
+    </joystick>
+  </ScreenCalibration>
+  <GUICalibration>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[X]]">ResetCalibration</button>
+      <button id="[[LB]]">NextResolution</button>
+      <button id="[[RB]]">NextCalibration</button>
+    </joystick>
+  </GUICalibration>
+  <VideoOSD>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[X]]">Close</button>
+    </joystick>
+  </VideoOSD>
+  <VideoMenu>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[B]]">Stop</button>
+      <button id="[[X]]">OSD</button>
+      <button id="[[LB]]">AspectRatio</button>
+      <button id="[[START]]">Info</button>
+    </joystick>
+  </VideoMenu>
+  <OSDVideoSettings>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[LB]]">AspectRatio</button>
+      <button id="[[X]]">Close</button>
+    </joystick>
+  </OSDVideoSettings>
+  <OSDAudioSettings>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[LB]]">AspectRatio</button>
+      <button id="[[X]]">Close</button>
+    </joystick>
+  </OSDAudioSettings>
+  <VideoBookmarks>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[LB]]">Delete</button>
+    </joystick>
+  </VideoBookmarks>
+  <MyVideoLibrary>
+  </MyVideoLibrary>
+  <MyVideoFiles>
+  </MyVideoFiles>
+  <MyVideoPlaylist>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[LB]]">Delete</button>
+    </joystick>
+  </MyVideoPlaylist>
+  <VirtualKeyboard>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[B]]">BackSpace</button>
+      <button id="[[Y]]">Symbols</button>
+      <button id="[[LB]]">Shift</button>
+      <button id="[[LTHUMB]]">Enter</button>
+      <axis [[RT]]>CursorLeft</axis>
+      <axis [[LT]]>CursorRight</axis>
+    </joystick>
+  </VirtualKeyboard>
+  <ContextMenu>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[B]]">Close</button>
+      <button id="[[X]]">Close</button>
+    </joystick>
+  </ContextMenu>
+  <Scripts>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[X]]">Info</button>
+    </joystick>
+  </Scripts>
+  <Settings>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[B]]">PreviousMenu</button>
+    </joystick>
+  </Settings>
+  <AddonInformation>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[B]]">Close</button>
+    </joystick>
+  </AddonInformation>
+  <AddonSettings>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[B]]">Close</button>
+    </joystick>
+  </AddonSettings>
+  <TextViewer>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[B]]">Close</button>
+    </joystick>
+  </TextViewer>
+  <shutdownmenu>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[B]]">PreviousMenu</button>
+      <button id="[[LTHUMB]]">PreviousMenu</button>
+    </joystick>
+  </shutdownmenu>
+  <submenu>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[B]]">PreviousMenu</button>
+    </joystick>
+  </submenu>
+  <MusicInformation>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[B]]">Close</button>
+    </joystick>
+  </MusicInformation>
+  <MovieInformation>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[B]]">Close</button>
+    </joystick>
+  </MovieInformation>
+  <NumericInput>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[B]]">BackSpace</button>
+      <button id="[[LTHUMB]]">Enter</button>
+    </joystick>
+  </NumericInput>
+  <GamepadInput>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[RTHUMB]]">Stop</button>
+    </joystick>
+  </GamepadInput>
+  <LockSettings>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[B]]">PreviousMenu</button>
+      <button id="[[RTHUMB]]">Close</button>
+    </joystick>
+  </LockSettings>
+  <ProfileSettings>
+    <joystick name="[[CONTROLLER_NAME]]">
+      <button id="[[B]]">PreviousMenu</button>
+      <button id="[[RTHUMB]]">Close</button>
+    </joystick>
+  </ProfileSettings>
+</keymap>

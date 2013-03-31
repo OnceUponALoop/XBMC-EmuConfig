@@ -1,51 +1,60 @@
 # XBMC/Emulator Configuration
 #
 # This configuration file is based on the original xbmc.xboxdrv example
-# It adds a total of five combo buttons (see Special Mapping below) to 
+# It adds a total of five combo buttons (see Special Mapping below) to
 # make emulator control easier.
-# This is especially useful when emulating newer systems that use 
-# 14+ buttons (ex: N64, PS1)
+# This is especially useful when emulating newer systems that use
+# 14+ buttons.
 #
 # ==============================================
 #                   Properties
 # ==============================================
-# Name: 
-# XBOX 360 Controler - XBMC/Emulators
+# Name:
+# XBMCEmu XBOX360 Controller
 #
 # xboxdrv Keymap:
 # ~/.xbmc/userdata/keymaps/xbmcemu.xboxdrv
 #
 # Axes    : 6
-# Buttons : 20
+# Buttons : 28 (4 D-Pad + 24 Buttons)
 #
 # ==============================================
-#                 Button Mapping
+#               SDL Button Mapping
 # ==============================================
-# A                           =           2
-# B                           =           3
-# X                           =           4
-# Y                           =           5
-# Left Shoulder Button(LB)    =           6
-# Rigt Shoulder Button(RB)    =           7
-# Start                       =           8
-# Guide                       =           9
-# Left Stick Button  (TL)     =           10
-# Right Stick Button (TR)     =           11
 # D-Pad UP                    =           0
 # D-Pad Down                  =           1
-# D-Pad Left                  =           17
-# D-Pad Right                 =           18
-# Back                        =           19
+# D-Pad Left                  =           2
+# D-Pad Right                 =           3
+# A                           =           4
+# B                           =           5
+# X                           =           6
+# Y                           =           7
+# Left Shoulder Button(LB)    =           8
+# Rigt Shoulder Button(RB)    =           9
+# Start                       =           10
+# Guide                       =           11
+# Left Stick Button  (TL)     =           12
+# Right Stick Button (TR)     =           13
+# Back                        =           27
 # ==============================================
-#                 Special Mapping
+#             Special Combo Mapping
 # ==============================================
-# Hold for 2 Seconds:
-# Guide                       =           ESC
-# Start                       =           12
-# Back                        =           13
-# LB + RB                     =           14
-# Left Stick Button  (TL)     =           15
-# Right Stick Button (TR)     =           16
+# Start + A                   =           14
+# Start + B                   =           15
+# Start + X                   =           16
+# Start + Y                   =           17
+# Start + LT                  =           18
+# Start + RT                  =           19
+#
+# Back + A                    =           20
+# Back + B                    =           21
+# Back + X                    =           22
+# Back + Y                    =           23
+# Back + LT                   =           24
+# Back + RT                   =           25
+#
+# Start + Guide               =           ESC
+# Back + Guide                =           ESC
 #
 # ==============================================
 #                  Axis Mapping
@@ -66,14 +75,15 @@
 
 # XBOXDRV OPtions
 [xboxdrv]
-ui-clear      = true
-extra-devices = false
-extra-events  = false
-deadzone      = 6000
+ui-clear       = true
+dpad-as-button = true
+extra-devices  = false
+extra-events   = false
+deadzone       = 6000
 
-# Device name has been modified to enable a custom xbmc 
+# Device name has been modified to enable a custom xbmc
 # keymap file
-device-name   = "XBOX 360 Controler - XBMC/Emulators"
+device-name   = "XBMCEmu XBOX360 Controller"
 
 # Button Mapping
 [ui-buttonmap]
@@ -83,26 +93,63 @@ X                 = BTN_X
 Y                 = BTN_Y
 
 # Modification for frodo
-DU                = BTN_TOP
-DD                = BTN_TOP2
-DL                = BTN_LEFT
-DR                = BTN_RIGHT
+DU                = BTN_BASE
+DD                = BTN_BASE2
+DL                = BTN_BASE3
+DR                = BTN_BASE4
 
-# The buttons below are mapped to two different buttons.
-# <BUTTON>=<SET1>:<SET2>:DELAY
-# The delay controls how long the button has to be held
-# before <SET2> is applied.
-START             = BTN_START:BTN_TRIGGER_HAPPY36:2000
-GUIDE             = BTN_MODE:KEY_ESC:2000
-BACK              = BTN_BACK:BTN_TRIGGER_HAPPY37:2000
+START             = BTN_START
+GUIDE             = BTN_MODE
+BACK              = BTN_BACK
 
 LB                = BTN_TL
 RB                = BTN_TR
-# LB+RB are mapped to BTH38 with a delay of 2seconds
-LB+RB^delay:2000  = BTN_TRIGGER_HAPPY38
 
-TL                = BTN_THUMBL:BTN_TRIGGER_HAPPY39:2000
-TR                = BTN_THUMBR:BTN_TRIGGER_HAPPY40:2000
+TL                = BTN_THUMBL
+TR                = BTN_THUMBR
+
+# Button Combos
+START+A           = BTN_TRIGGER_HAPPY1
+A+START           = BTN_TRIGGER_HAPPY1
+
+START+B           = BTN_TRIGGER_HAPPY2
+B+START           = BTN_TRIGGER_HAPPY2
+
+START+X           = BTN_TRIGGER_HAPPY3
+X+START           = BTN_TRIGGER_HAPPY3
+
+START+Y           = BTN_TRIGGER_HAPPY4
+Y+START           = BTN_TRIGGER_HAPPY4
+
+START+LB          = BTN_TRIGGER_HAPPY5
+LB+START          = BTN_TRIGGER_HAPPY5
+
+START+RB          = BTN_TRIGGER_HAPPY6
+LB+START          = BTN_TRIGGER_HAPPY6
+
+BACK+A            = BTN_TRIGGER_HAPPY7
+A+BACK            = BTN_TRIGGER_HAPPY7
+
+BACK+B            = BTN_TRIGGER_HAPPY8
+B+BACK            = BTN_TRIGGER_HAPPY8
+
+BACK+X            = BTN_TRIGGER_HAPPY9
+X+BACK            = BTN_TRIGGER_HAPPY9
+
+BACK+Y            = BTN_TRIGGER_HAPPY10
+Y+BACK            = BTN_TRIGGER_HAPPY10
+
+BACK+LB           = BTN_TRIGGER_HAPPY11
+LB+BACK           = BTN_TRIGGER_HAPPY11
+
+BACK+RB           = BTN_TRIGGER_HAPPY12
+RB+BACK           = BTN_TRIGGER_HAPPY12
+
+START+BACK        = BTN_TRIGGER_HAPPY13
+BACK+START        = BTN_TRIGGER_HAPPY13
+
+START+GUIDE       = KEY_ESC
+BACK+GUIDE        = KEY_ESC
 
 [ui-axismap]
 X1                = ABS_X
